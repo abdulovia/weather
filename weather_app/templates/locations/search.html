@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="py-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4 justify-content-center">
+            {% for loc in locations %}
+            <div class="col">
+                <div class="card text-body h-100" style="border-radius: 35px;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="card-title mb-3">{{ loc.name }}</h5>
+                            {% if user.is_authenticated %}
+                            <form action="{% url 'locations:add' %}" method="post">
+                                <input type="hidden" name="user_id" value="{{ user.id }}" />
+                                <input type="hidden" name="location" value="{{ loc.name }}" />
+                                <input type="hidden" name="lat" value="{{ loc.lat }}" />
+                                <input type="hidden" name="lon" value="{{ loc.lon }}" />
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary btn-sm" style="border-radius: 50%;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="30" fill="currentColor" class="bi bi-plus-lg"
+                                        viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />                                </svg>
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
+
+                        <div class="card-text">
+                            <p class="mb-1"><strong>Latitude:</strong> {{ loc.lat }}</p>
+                            <p class="mb-1"><strong>Longitude:</strong> {{ loc.lon }}</p>
+                            <p class="mb-1"><strong>Country:</strong> {{ loc.country }}</p>
+                            {% if loc.state %}
+                            <p class="mb-1"><strong>State:</strong> {{ loc.state }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
