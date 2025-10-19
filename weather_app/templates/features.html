@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Features{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Возможности WeatherApp</h2>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-cloud-sun fs-3 text-primary"></i> Текущая погода</h5>
+                    <p class="card-text">Получайте актуальные данные о температуре в ваших сохранённых локациях в режиме
+                        реального времени.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-search fs-3 text-primary"></i> Удобный поиск</h5>
+                    <p class="card-text">Находите любые города и населённые пункты по всему миру с помощью нашего
+                        поиска.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-collection fs-3 text-primary"></i> Персональная коллекция
+                    </h5>
+                    <p class="card-text">Создавайте свой собственный список важных для вас локаций и легко управляйте
+                        им.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-person-plus fs-3 text-primary"></i> Мультипользовательский
+                    </h5>
+                    <p class="card-text">Каждый пользователь имеет свой уникальный набор локаций и настройки.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-phone fs-3 text-primary"></i> Адаптивный дизайн</h5>
+                    <p class="card-text">Приложение отлично работает как на компьютерах, так и на мобильных устройствах.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-shield-lock fs-3 text-primary"></i> Безопасность</h5>
+                    <p class="card-text">Ваши данные защищены современными методами аутентификации и авторизации.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
