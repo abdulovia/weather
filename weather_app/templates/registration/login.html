@@ -1,12 +1,65 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Log In</button>
-</form>
+<div class="login-container container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg" style="width: 100%; max-width: 420px; margin: 1em;">
+        <div class="card-body p-4 p-sm-5">
+            <form method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <div class="text-center mb-4">
+                    <img class="mb-3" src="{% static 'img/favicon.png' %}" alt="Company Logo" width="72" height="72">
+                    <h1 class="h3 mb-3 fw-normal">Please log in</h1>
+
+                    {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Your username and password didn't match. Please try again.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control {% if form.errors %}is-invalid{% endif %}" id="floatingInput"
+                        name="username" placeholder="name@example.com" required
+                        value="{% if form.username.value %}{{ form.username.value }}{% endif %}">
+                    <label for="floatingInput">Username</label>
+                    <div class="invalid-feedback">
+                        Please enter your username.
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control {% if form.errors %}is-invalid{% endif %}"
+                        id="floatingPassword" name="password" placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                    <div class="invalid-feedback">
+                        Please enter your password.
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe" name="remember-me">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <a href="{% url 'password_reset' %}" class="text-decoration-none">Forgot password?</a>
+                </div>
+
+                <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">Log In</button>
+
+                {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+
+                <p class="text-center text-muted mt-3 mb-0">Don't have an account?
+                    <a href="{% url 'signup' %}" class="text-decoration-none">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
